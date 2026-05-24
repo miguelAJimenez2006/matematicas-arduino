@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematicas con Arduino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="student.css">
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       LOGIN
+  ════════════════════════════════════════════ -->
+  <div id="screen-login" class="screen active">
+    <div class="login-box">
+
+      <!-- ── Iniciar sesión ── -->
+      <div id="login-pane">
+        <div class="logo">🔢</div>
+        <h1>Matematicas!</h1>
+        <p class="subtitle">Ingresa con tu usuario</p>
+        <input id="login-username" type="text" placeholder="Tu nombre de usuario" autocomplete="username">
+        <input id="login-password" type="password" placeholder="Contrasena" autocomplete="current-password">
+        <button id="btn-login" class="btn-primary">Entrar</button>
+        <p id="login-error" class="error-msg"></p>
+        <p class="toggle-auth">¿Sin cuenta? <button id="btn-to-register" class="link-btn-inline">Crear cuenta</button></p>
+      </div>
+
+      <!-- ── Registrarse ── -->
+      <div id="register-pane" class="hidden">
+        <div class="logo">🔢</div>
+        <h1>Crear cuenta</h1>
+        <input id="reg-displayname" type="text"     placeholder="Tu nombre" autocomplete="name">
+        <input id="reg-username"    type="text"     placeholder="Nombre de usuario" autocomplete="username">
+        <input id="reg-password"    type="password" placeholder="Contrasena" autocomplete="new-password">
+        <button id="btn-register" class="btn-primary">Registrarse</button>
+        <p id="register-error" class="error-msg"></p>
+        <p class="toggle-auth">¿Ya tienes cuenta? <button id="btn-to-login" class="link-btn-inline">Iniciar sesion</button></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       DASHBOARD — sidebar + tabs
+  ════════════════════════════════════════════ -->
+  <div id="screen-exercises" class="screen">
+
+    <!-- ── SIDEBAR ────────────────────────────── -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🔢</div>
+        <span class="brand-name">Matematicas</span>
+      </div>
+
+      <div class="sidebar-user" id="sidebar-user">
+        <div class="user-avatar" id="nav-avatar">A</div>
+        <div class="user-info">
+          <span class="user-display-name" id="nav-name">Estudiante</span>
+          <span class="user-level-txt" id="nav-level">Nivel 1</span>
+        </div>
+      </div>
+
+      <ul class="nav-list">
+        <li class="nav-item active" data-tab="home">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+          </span>
+          <span class="nav-label">Inicio</span>
+        </li>
+        <li class="nav-item" data-tab="exercises">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </span>
+          <span class="nav-label">Ejercicios</span>
+          <span class="nav-badge hidden" id="nav-badge-exercises">0</span>
+        </li>
+        <li class="nav-item" data-tab="achievements">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </span>
+          <span class="nav-label">Logros</span>
+        </li>
+        <li class="nav-item" data-tab="history">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><line x1="8" y1="9" x2="10" y2="9"/></svg>
+          </span>
+          <span class="nav-label">Historial</span>
+          <span class="nav-badge hidden" id="nav-badge-history">0</span>
+        </li>
+        <li class="nav-item" data-tab="profile">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span class="nav-label">Perfil</span>
+        </li>
+      </ul>
+
+      <button id="btn-logout" class="btn-logout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Salir
+      </button>
+    </nav>
+
+    <!-- ── MAIN CONTENT ──────────────────────── -->
+    <main class="main-area" id="main-area">
+
+      <!-- ① TAB: INICIO -->
+      <div class="tab-panel active" id="tab-home">
+        <div class="tab-header">
+          <h2 class="tab-title">Inicio</h2>
+        </div>
+        <div class="tab-body">
+
+          <div class="hero-panel" id="hero-panel">
+            <div class="hero-content">
+              <p class="hero-greeting" id="hero-greeting">Hola!</p>
+              <div class="hero-level-row">
+                <span class="level-pill" id="level-pill">Nivel 1</span>
+                <span class="level-name-txt" id="level-name-txt">Aprendiz</span>
+              </div>
+              <div class="xp-track">
+                <div class="xp-fill" id="xp-fill" style="width:0%"></div>
+              </div>
+              <p class="xp-caption" id="xp-caption">0 / 100 XP para Explorador</p>
+            </div>
+            <div class="hero-orb" id="hero-orb">
+              <span class="orb-num" id="orb-num">1</span>
+              <span class="orb-sub">nivel</span>
+            </div>
+          </div>
+
+          <div class="stats-bento">
+            <div class="stat-card stat-big">
+              <div class="ring-wrap">
+                <svg viewBox="0 0 88 88" width="88" height="88">
+                  <circle cx="44" cy="44" r="36" fill="none" stroke="#E4E4E7" stroke-width="7"/>
+                  <circle id="accuracy-arc" cx="44" cy="44" r="36" fill="none"
+                    stroke="#10B981" stroke-width="7"
+                    stroke-dasharray="226.2" stroke-dashoffset="226.2"
+                    stroke-linecap="round" transform="rotate(-90 44 44)"
+                    style="transition: stroke-dashoffset 1.2s cubic-bezier(0.16,1,0.3,1)"/>
+                </svg>
+                <div class="ring-center">
+                  <span class="ring-value" id="accuracy-value">—</span>
+                  <span class="ring-unit">%</span>
+                </div>
+              </div>
+              <div class="stat-meta">
+                <span class="stat-label">Aciertos</span>
+                <span class="stat-sub" id="correct-sub">sin respuestas aun</span>
+              </div>
+            </div>
+
+            <div class="stat-card stat-sm" style="--card-accent:#3B82F6">
+              <span class="stat-icon">📚</span>
+              <span class="stat-num" id="stat-completed">0</span>
+              <span class="stat-label">Ejercicios</span>
+              <span class="stat-sub">completados</span>
+            </div>
+
+            <div class="stat-card stat-sm" style="--card-accent:#EF4444">
+              <span class="stat-icon">🔥</span>
+              <span class="stat-num" id="stat-streak">0</span>
+              <span class="stat-label">Racha</span>
+              <span class="stat-sub">seguidas</span>
+            </div>
+
+            <div class="stat-card stat-sm" style="--card-accent:#F59E0B">
+              <span class="stat-icon">💎</span>
+              <span class="stat-num" id="stat-perfect">0</span>
+              <span class="stat-label">Perfectos</span>
+              <span class="stat-sub">100% aciertos</span>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <div class="section-row">
+              <h3 class="section-heading">Pendientes</h3>
+              <span class="count-chip" id="home-pending-count">0</span>
+              <button class="link-btn" data-nav-to="exercises">Ver todos</button>
+            </div>
+            <div id="home-exercises-preview" class="exercises-grid"></div>
+            <p id="home-no-exercises" class="empty-msg" style="display:none">
+              Tu profesor aun no te ha asignado ejercicios.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ② TAB: EJERCICIOS -->
+      <div class="tab-panel" id="tab-exercises">
+        <div class="tab-header">
+          <h2 class="tab-title">Ejercicios</h2>
+          <span class="count-chip" id="pending-count">0</span>
+        </div>
+        <div class="tab-body">
+          <div id="exercises-list" class="exercises-grid exercises-grid-wide"></div>
+          <p id="no-exercises" class="empty-msg" style="display:none">
+            Tu profesor aun no te ha asignado ejercicios.
+          </p>
+        </div>
+      </div>
+
+      <!-- ③ TAB: LOGROS -->
+      <div class="tab-panel" id="tab-achievements">
+        <div class="tab-header">
+          <h2 class="tab-title">Logros</h2>
+        </div>
+        <div class="tab-body">
+          <div class="achievements-grid" id="achievements-row"></div>
+        </div>
+      </div>
+
+      <!-- ④ TAB: HISTORIAL -->
+      <div class="tab-panel" id="tab-history">
+        <div class="tab-header">
+          <h2 class="tab-title">Historial</h2>
+          <span class="count-chip" id="history-count">0</span>
+        </div>
+        <div class="tab-body">
+          <div id="history-list" class="history-list">
+            <p class="empty-msg-sm">Aun no has completado ejercicios.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ TAB: PERFIL -->
+      <div class="tab-panel" id="tab-profile">
+        <div class="tab-header">
+          <h2 class="tab-title">Mi perfil</h2>
+        </div>
+        <div class="tab-body">
+          <div class="profile-grid">
+
+            <div class="profile-card">
+              <div class="profile-avatar-wrap">
+                <div class="profile-avatar" id="profile-avatar">A</div>
+                <div class="profile-level-ring" id="profile-level-ring">
+                  <span id="profile-orb-num">1</span>
+                </div>
+              </div>
+              <div class="profile-identity">
+                <h3 class="profile-display-name" id="profile-display-name">Estudiante</h3>
+                <span class="profile-username" id="profile-username">@usuario</span>
+                <span class="profile-level-tag" id="profile-level-tag">Aprendiz</span>
+              </div>
+              <div class="profile-xp-bar">
+                <div class="profile-xp-fill" id="profile-xp-fill" style="width:0%"></div>
+              </div>
+              <span class="profile-xp-caption" id="profile-xp-caption">0 XP</span>
+            </div>
+
+            <div class="profile-edit-card">
+              <h4 class="card-heading">Editar informacion</h4>
+              <div class="edit-form">
+                <label class="edit-label">
+                  <span class="edit-field-name">Nombre para mostrar</span>
+                  <input id="edit-display-name" type="text" class="edit-input" placeholder="Tu nombre">
+                </label>
+                <label class="edit-label">
+                  <span class="edit-field-name">Contrasena actual</span>
+                  <input id="edit-current-password" type="password" class="edit-input" placeholder="••••••••">
+                </label>
+                <label class="edit-label">
+                  <span class="edit-field-name">Nueva contrasena</span>
+                  <input id="edit-new-password" type="password" class="edit-input" placeholder="••••••••">
+                </label>
+                <div class="edit-actions">
+                  <button id="btn-save-profile" class="btn-save">Guardar cambios</button>
+                  <p id="profile-save-msg" class="save-msg"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-stats-card">
+              <h4 class="card-heading">Mis estadisticas</h4>
+              <div class="pstats-row">
+                <div class="pstat">
+                  <span class="pstat-num" id="pstat-xp">0</span>
+                  <span class="pstat-label">XP total</span>
+                </div>
+                <div class="pstat">
+                  <span class="pstat-num" id="pstat-completed">0</span>
+                  <span class="pstat-label">Ejercicios</span>
+                </div>
+                <div class="pstat">
+                  <span class="pstat-num" id="pstat-accuracy">—%</span>
+                  <span class="pstat-label">Precision</span>
+                </div>
+                <div class="pstat">
+                  <span class="pstat-num" id="pstat-streak">0</span>
+                  <span class="pstat-label">Racha</span>
+                </div>
+                <div class="pstat">
+                  <span class="pstat-num" id="pstat-perfect">0</span>
+                  <span class="pstat-label">Perfectos</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ── BOTTOM NAV (mobile) ───────────────── -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="bnav-item active" data-tab="home">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="bnav-item" data-tab="exercises">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Ejercicios</span>
+      </button>
+      <button class="bnav-item" data-tab="achievements">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+        <span>Logros</span>
+      </button>
+      <button class="bnav-item" data-tab="history">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        <span>Historial</span>
+      </button>
+      <button class="bnav-item" data-tab="profile">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PANTALLA DE EJERCICIO
+  ════════════════════════════════════════════ -->
+  <div id="screen-exercise" class="screen">
+    <div class="top-bar">
+      <button id="btn-back" class="btn-small">← Volver</button>
+      <div id="arduino-status" class="arduino-status disconnected">
+        <span class="dot"></span> Arduino desconectado
+      </div>
+      <button id="btn-connect" class="btn-connect">Conectar Arduino</button>
+    </div>
+
+    <div class="exercise-header">
+      <h2 id="exercise-title">Ejercicio</h2>
+      <div class="progress-bar-wrap">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <span id="progress-text" class="progress-text">1 / 5</span>
+    </div>
+
+    <div id="question-card" class="question-card">
+      <div id="visual-scene" class="visual-scene"></div>
+      <p id="question-prompt" class="question-prompt"></p>
+      <p id="question-sub" class="question-sub"></p>
+      <div class="options-grid">
+        <button class="option-btn" id="opt-A" data-opt="A">
+          <span class="opt-letter">A</span>
+          <span class="opt-text" id="opt-A-text">5</span>
+        </button>
+        <button class="option-btn" id="opt-B" data-opt="B">
+          <span class="opt-letter">B</span>
+          <span class="opt-text" id="opt-B-text">6</span>
+        </button>
+        <button class="option-btn" id="opt-C" data-opt="C">
+          <span class="opt-letter">C</span>
+          <span class="opt-text" id="opt-C-text">7</span>
+        </button>
+        <button class="option-btn" id="opt-D" data-opt="D">
+          <span class="opt-letter">D</span>
+          <span class="opt-text" id="opt-D-text">8</span>
+        </button>
+      </div>
+      <div id="feedback" class="feedback hidden"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PANTALLA DE RESULTADO FINAL
+  ════════════════════════════════════════════ -->
+  <div id="screen-result" class="screen">
+    <div class="result-card">
+      <div id="result-emoji" class="result-emoji">🎉</div>
+      <h2 id="result-title">Terminaste!</h2>
+      <p id="result-score" class="result-score"></p>
+      <div id="result-xp-gain" class="result-xp-gain"></div>
+      <button id="btn-next-exercise" class="btn-primary">Ver mi progreso</button>
+    </div>
+  </div>
+
+  <script src="/shared/api.js"></script>
+  <script src="student.js"></script>
+</body>
+</html>
