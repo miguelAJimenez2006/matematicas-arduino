@@ -648,7 +648,7 @@ function renderVisualScene(emoji, type, a, b) {
     if (a <= MAX) {
       scene.innerHTML = `<div class="vs-group">${spans(Math.max(keep,0), 'vs-keep')}${spans(Math.max(b,0), 'vs-going')}</div>`;
     } else {
-      scene.innerHTML = `${compact(keep,'vs-keep')}<div class="vs-op">−</div>${compact(b,'vs-going')}`;
+      scene.innerHTML = `${compact(a,'vs-keep')}<div class="vs-op">−</div>${compact(b,'vs-going')}`;
     }
   }
 }

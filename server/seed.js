@@ -59,17 +59,17 @@ async function seed() {
 
   // 0 — Sumas básicas (Ana) — tema: estrellas
   ex.push(await createExercise(ana.id, 'Sumas básicas', 'addition', [
-    { prompt: '¿Cuánto es 3 + 4?',   options: { A:'5',  B:'6',  C:'7',  D:'8'  }, correct:'C' },
+    { prompt: '¿Cuánto es 3 + 4?',   options: { A:'5',  B:'6',  C:'8',  D:'7'  }, correct:'D' },
     { prompt: '¿Cuánto es 5 + 2?',   options: { A:'5',  B:'7',  C:'8',  D:'9'  }, correct:'B' },
-    { prompt: '¿Cuánto es 8 + 1?',   options: { A:'7',  B:'8',  C:'9',  D:'10' }, correct:'C' },
-    { prompt: '¿Cuánto es 4 + 6?',   options: { A:'9',  B:'10', C:'11', D:'12' }, correct:'B' },
-    { prompt: '¿Cuánto es 6 + 3?',   options: { A:'7',  B:'8',  C:'9',  D:'10' }, correct:'C' },
+    { prompt: '¿Cuánto es 8 + 1?',   options: { A:'9',  B:'7',  C:'8',  D:'10' }, correct:'A' },
+    { prompt: '¿Cuánto es 4 + 6?',   options: { A:'9',  B:'11', C:'10', D:'12' }, correct:'C' },
+    { prompt: '¿Cuánto es 6 + 3?',   options: { A:'7',  B:'9',  C:'8',  D:'10' }, correct:'B' },
   ], 'stars'));
 
   // 1 — Sumas con decenas (Ana) — tema: globos
   ex.push(await createExercise(ana.id, 'Sumas con decenas', 'addition', [
-    { prompt: '¿Cuánto es 10 + 5?',  options: { A:'14', B:'15', C:'16', D:'20' }, correct:'B' },
-    { prompt: '¿Cuánto es 20 + 8?',  options: { A:'26', B:'27', C:'28', D:'30' }, correct:'C' },
+    { prompt: '¿Cuánto es 10 + 5?',  options: { A:'15', B:'14', C:'16', D:'20' }, correct:'A' },
+    { prompt: '¿Cuánto es 20 + 8?',  options: { A:'26', B:'27', C:'30', D:'28' }, correct:'D' },
     { prompt: '¿Cuánto es 15 + 7?',  options: { A:'20', B:'21', C:'22', D:'23' }, correct:'C' },
     { prompt: '¿Cuánto es 30 + 4?',  options: { A:'33', B:'34', C:'35', D:'40' }, correct:'B' },
     { prompt: '¿Cuánto es 12 + 9?',  options: { A:'20', B:'21', C:'22', D:'19' }, correct:'B' },
@@ -77,56 +77,56 @@ async function seed() {
 
   // 2 — Sumas avanzadas (Ana) — tema: robots
   ex.push(await createExercise(ana.id, 'Sumas avanzadas', 'addition', [
-    { prompt: '¿Cuánto es 23 + 14?', options: { A:'35', B:'36', C:'37', D:'38' }, correct:'C' },
-    { prompt: '¿Cuánto es 45 + 22?', options: { A:'65', B:'66', C:'67', D:'68' }, correct:'C' },
+    { prompt: '¿Cuánto es 23 + 14?', options: { A:'37', B:'35', C:'36', D:'38' }, correct:'A' },
+    { prompt: '¿Cuánto es 45 + 22?', options: { A:'65', B:'67', C:'66', D:'68' }, correct:'B' },
     { prompt: '¿Cuánto es 31 + 29?', options: { A:'58', B:'59', C:'60', D:'61' }, correct:'C' },
-    { prompt: '¿Cuánto es 18 + 17?', options: { A:'33', B:'34', C:'35', D:'36' }, correct:'C' },
-    { prompt: '¿Cuánto es 27 + 43?', options: { A:'68', B:'69', C:'70', D:'71' }, correct:'C' },
+    { prompt: '¿Cuánto es 18 + 17?', options: { A:'33', B:'34', C:'36', D:'35' }, correct:'D' },
+    { prompt: '¿Cuánto es 27 + 43?', options: { A:'70', B:'68', C:'69', D:'71' }, correct:'A' },
   ], 'robots'));
 
   // 3 — Restas básicas (Ana) — tema: dinosaurios
   ex.push(await createExercise(ana.id, 'Restas básicas', 'subtraction', [
-    { prompt: '¿Cuánto es 9 - 3?',   options: { A:'4',  B:'5',  C:'6',  D:'7'  }, correct:'C' },
+    { prompt: '¿Cuánto es 9 - 3?',   options: { A:'4',  B:'5',  C:'7',  D:'6'  }, correct:'D' },
     { prompt: '¿Cuánto es 8 - 5?',   options: { A:'2',  B:'3',  C:'4',  D:'5'  }, correct:'B' },
-    { prompt: '¿Cuánto es 7 - 2?',   options: { A:'4',  B:'5',  C:'6',  D:'7'  }, correct:'B' },
-    { prompt: '¿Cuánto es 10 - 4?',  options: { A:'5',  B:'6',  C:'7',  D:'8'  }, correct:'B' },
+    { prompt: '¿Cuánto es 7 - 2?',   options: { A:'4',  B:'6',  C:'5',  D:'7'  }, correct:'C' },
+    { prompt: '¿Cuánto es 10 - 4?',  options: { A:'6',  B:'5',  C:'7',  D:'8'  }, correct:'A' },
     { prompt: '¿Cuánto es 6 - 1?',   options: { A:'4',  B:'5',  C:'6',  D:'7'  }, correct:'B' },
   ], 'dinosaurs'));
 
   // 4 — Restas con decenas (Ana) — tema: frutas
   ex.push(await createExercise(ana.id, 'Restas con decenas', 'subtraction', [
-    { prompt: '¿Cuánto es 20 - 5?',  options: { A:'13', B:'14', C:'15', D:'16' }, correct:'C' },
+    { prompt: '¿Cuánto es 20 - 5?',  options: { A:'14', B:'15', C:'13', D:'16' }, correct:'B' },
     { prompt: '¿Cuánto es 30 - 8?',  options: { A:'20', B:'21', C:'22', D:'23' }, correct:'C' },
-    { prompt: '¿Cuánto es 15 - 7?',  options: { A:'6',  B:'7',  C:'8',  D:'9'  }, correct:'C' },
-    { prompt: '¿Cuánto es 40 - 12?', options: { A:'26', B:'27', C:'28', D:'29' }, correct:'C' },
-    { prompt: '¿Cuánto es 25 - 9?',  options: { A:'14', B:'15', C:'16', D:'17' }, correct:'C' },
+    { prompt: '¿Cuánto es 15 - 7?',  options: { A:'8',  B:'6',  C:'7',  D:'9'  }, correct:'A' },
+    { prompt: '¿Cuánto es 40 - 12?', options: { A:'26', B:'27', C:'29', D:'28' }, correct:'D' },
+    { prompt: '¿Cuánto es 25 - 9?',  options: { A:'14', B:'16', C:'15', D:'17' }, correct:'B' },
   ], 'fruits'));
 
   // 5 — Restas avanzadas (Carlos) — tema: cohetes
   ex.push(await createExercise(carlos.id, 'Restas avanzadas', 'subtraction', [
-    { prompt: '¿Cuánto es 50 - 23?', options: { A:'25', B:'26', C:'27', D:'28' }, correct:'C' },
-    { prompt: '¿Cuánto es 84 - 35?', options: { A:'47', B:'48', C:'49', D:'50' }, correct:'C' },
+    { prompt: '¿Cuánto es 50 - 23?', options: { A:'27', B:'25', C:'26', D:'28' }, correct:'A' },
+    { prompt: '¿Cuánto es 84 - 35?', options: { A:'47', B:'49', C:'48', D:'50' }, correct:'B' },
     { prompt: '¿Cuánto es 63 - 28?', options: { A:'33', B:'34', C:'35', D:'36' }, correct:'C' },
-    { prompt: '¿Cuánto es 71 - 36?', options: { A:'33', B:'34', C:'35', D:'36' }, correct:'C' },
-    { prompt: '¿Cuánto es 90 - 47?', options: { A:'41', B:'42', C:'43', D:'44' }, correct:'C' },
+    { prompt: '¿Cuánto es 71 - 36?', options: { A:'33', B:'34', C:'36', D:'35' }, correct:'D' },
+    { prompt: '¿Cuánto es 90 - 47?', options: { A:'43', B:'41', C:'42', D:'44' }, correct:'A' },
   ], 'rockets'));
 
   // 6 — Repaso sumas (Carlos) — tema: mariposas
   ex.push(await createExercise(carlos.id, 'Repaso: Sumas rápidas', 'addition', [
     { prompt: '¿Cuánto es 2 + 9?',   options: { A:'10', B:'11', C:'12', D:'13' }, correct:'B' },
     { prompt: '¿Cuánto es 7 + 8?',   options: { A:'13', B:'14', C:'15', D:'16' }, correct:'C' },
-    { prompt: '¿Cuánto es 6 + 7?',   options: { A:'11', B:'12', C:'13', D:'14' }, correct:'C' },
-    { prompt: '¿Cuánto es 9 + 9?',   options: { A:'16', B:'17', C:'18', D:'19' }, correct:'C' },
-    { prompt: '¿Cuánto es 8 + 7?',   options: { A:'13', B:'14', C:'15', D:'16' }, correct:'C' },
+    { prompt: '¿Cuánto es 6 + 7?',   options: { A:'13', B:'11', C:'12', D:'14' }, correct:'A' },
+    { prompt: '¿Cuánto es 9 + 9?',   options: { A:'16', B:'17', C:'19', D:'18' }, correct:'D' },
+    { prompt: '¿Cuánto es 8 + 7?',   options: { A:'13', B:'15', C:'14', D:'16' }, correct:'B' },
   ], 'butterflies'));
 
   // 7 — Repaso restas (Carlos) — tema: peces
   ex.push(await createExercise(carlos.id, 'Repaso: Restas rápidas', 'subtraction', [
-    { prompt: '¿Cuánto es 12 - 5?',  options: { A:'5',  B:'6',  C:'7',  D:'8'  }, correct:'C' },
-    { prompt: '¿Cuánto es 15 - 8?',  options: { A:'5',  B:'6',  C:'7',  D:'8'  }, correct:'C' },
+    { prompt: '¿Cuánto es 12 - 5?',  options: { A:'5',  B:'7',  C:'6',  D:'8'  }, correct:'B' },
+    { prompt: '¿Cuánto es 15 - 8?',  options: { A:'5',  B:'6',  C:'8',  D:'7'  }, correct:'D' },
     { prompt: '¿Cuánto es 11 - 4?',  options: { A:'5',  B:'6',  C:'7',  D:'8'  }, correct:'C' },
-    { prompt: '¿Cuánto es 18 - 9?',  options: { A:'7',  B:'8',  C:'9',  D:'10' }, correct:'C' },
-    { prompt: '¿Cuánto es 14 - 7?',  options: { A:'5',  B:'6',  C:'7',  D:'8'  }, correct:'C' },
+    { prompt: '¿Cuánto es 18 - 9?',  options: { A:'9',  B:'7',  C:'8',  D:'10' }, correct:'A' },
+    { prompt: '¿Cuánto es 14 - 7?',  options: { A:'5',  B:'6',  C:'8',  D:'7'  }, correct:'D' },
   ], 'fish'));
 
   // ── Asignaciones ──────────────────────────────────────────
